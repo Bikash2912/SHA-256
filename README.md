@@ -1,6 +1,8 @@
 # SHA-256
 
 # Iterative SHA-256 ASIC Implementation (RTL → Gate-Level)
+---
+<img width="1408" height="768" alt="it9f2tit" src="https://github.com/user-attachments/assets/524529c0-0ee3-4da7-a44d-1c5aee4dcfb9" />
 
 ## Overview
 This project implements the **SHA-256 cryptographic hash algorithm** using an **iterative hardware architecture**, written in **Verilog HDL** and targeted for **ASIC-style design flow**.

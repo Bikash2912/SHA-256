@@ -12,7 +12,6 @@ module sha256_constants (
     output wire [31:0] H7
 );
 
-    // ----------- Initial Hash Values (SHA-256) -----------
     assign H0 = 32'h6a09e667;
     assign H1 = 32'hbb67ae85;
     assign H2 = 32'h3c6ef372;
@@ -22,7 +21,6 @@ module sha256_constants (
     assign H6 = 32'h1f83d9ab;
     assign H7 = 32'h5be0cd19;
 
-    // ----------- Round Constants K[t] -----------
     always @(*) begin
         case (round_cnt)
             6'd0:  K_t = 32'h428a2f98;

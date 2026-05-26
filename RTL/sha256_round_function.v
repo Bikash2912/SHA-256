@@ -30,11 +30,11 @@ wire [31:0] Ch_EFG_dbg;
     wire [31:0] ROTR_E_11 = {E[10:0], E[31:11]};
     wire [31:0] ROTR_E_25 = {E[24:0], E[31:25]};
 
-    // -------- Σ functions --------
+    /
     wire [31:0] Sigma0_A = ROTR_A_2  ^ ROTR_A_13 ^ ROTR_A_22;
     wire [31:0] Sigma1_E = ROTR_E_6  ^ ROTR_E_11 ^ ROTR_E_25;
 
-    // -------- Choice & Majority --------
+    
     wire [31:0] ch_EFG  = (E & F) ^ (~E & G);
     wire [31:0] maj_ABC = (A & B) ^ (A & C) ^ (B & C);
 

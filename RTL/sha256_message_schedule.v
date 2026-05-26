@@ -15,7 +15,6 @@ module sha256_message_schedule (
 
     integer i;
 
-    // ----------- σ functions ----------- 
     function [31:0] sigma0;
         input [31:0] x;
         begin
@@ -34,12 +33,12 @@ module sha256_message_schedule (
         end
     endfunction
 
-    // ----------- Precompute next word ----------- 
+    
     always @(*) begin
         new_W = sigma1(W[14]) + W[9] + sigma0(W[1]) + W[0];
     end
 
-    // ----------- Sequential logic ----------- 
+ 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             for (i = 0; i < 16; i = i + 1)
@@ -76,7 +75,7 @@ module sha256_message_schedule (
         end
     end
 
-    // ----------- Output selection ----------- 
+    
     always @(*) begin
         if (round_cnt < 6'd16)
             W_t = W[round_cnt];

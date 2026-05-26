@@ -8,34 +8,18 @@ module sha256_top (
     output wire [255:0] hash_out,
     output wire        done
 );
-
-    // ----------- Internal Signals -----------
-
-    // Control signals
     wire init_regs;
     wire round_en;
     wire round_cnt_en;
     wire round_cnt_clr;
-
-    // Round counter
-    wire [5:0] round_cnt;
-
-    // Constants
+    wire [5:0] round_cn
     wire [31:0] K_t;
     wire [31:0] H0, H1, H2, H3, H4, H5, H6, H7;
-
-    // Message schedule
     wire [31:0] W_t;
-
-    // Datapath registers
     wire [31:0] A, B, C, D, E, F, G, H;
-
-    // Round function outputs
     wire [31:0] T1, T2;
-    // reg [31:0] W_t_reg;
     reg [5:0] round_cnt_d;
 
-    // ----------- Instantiate Control FSM -----------
     sha256_ctrl_fsm u_ctrl_fsm (
         .clk          (clk),
         .rst_n        (rst_n),
@@ -48,7 +32,6 @@ module sha256_top (
         .done         (done)
     );
 
-    // ----------- Instantiate Round Counter -----------
     sha256_round_counter u_round_counter (
         .clk       (clk),
         .rst_n     (rst_n),
@@ -57,7 +40,6 @@ module sha256_top (
         .round_cnt (round_cnt)
     );
 
-    // ----------- Instantiate Constants ROM -----------
     sha256_constants u_constants (
         .round_cnt (round_cnt),
         .K_t       (K_t),
@@ -71,17 +53,14 @@ module sha256_top (
         .H7        (H7)
     );
 
-    // ----------- Instantiate Message Schedule -----------
     sha256_message_schedule u_msg_schedule (
         .clk           (clk),
         .rst_n         (rst_n),
         .init          (init_regs),
         .round_cnt     (round_cnt),
         .message_block (message_block),
-        .W_t           (W_t)
-    );
-
-    // ----------- Instantiate Round Function -----------
+        .W_t           (W_t));
+    
     sha256_round_function u_round_function (
         .A   (A),
         .B   (B),
@@ -97,7 +76,6 @@ module sha256_top (
         .T2  (T2)
     );
 
-    // ----------- Instantiate Datapath -----------
     sha256_datapath u_datapath (
         .clk       (clk),
         .rst_n     (rst_n),
